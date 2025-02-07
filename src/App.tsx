@@ -1,26 +1,18 @@
 import "./App.css";
-import { useFetch } from "./hooks";
-
-const url = "https://api.example.com/data";
-
-interface Data {
-  name: string;
-  lastName: string;
-  age: number;
-}
+import { Button, ChildrenButton } from "./components";
+import { GlobalProvider } from "./context/global.context";
 
 function App() {
-  const { data, error, loading } = useFetch<Data>(url);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>UPS! Hay un error: {error.message}</div>;
-  }
-
-  return <div>{JSON.stringify(data)}</div>;
+  const handleClick = () => {};
+  return (
+    <GlobalProvider>
+      <Button parentMethod={handleClick}>
+        <ChildrenButton>
+          <div>My label</div>
+        </ChildrenButton>
+      </Button>
+    </GlobalProvider>
+  );
 }
 
 export default App;
